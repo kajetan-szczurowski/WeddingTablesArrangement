@@ -15,7 +15,6 @@ const table = {
 
 const tableArray = Object.keys(table).map(id => `${id}. ${table[id]}`);
 
-// kopytko.innerText = tableArray;
 
 const wrapper = document.getElementById('main-wrapper');
 let index = 0;
