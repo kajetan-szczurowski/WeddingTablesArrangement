@@ -1,34 +1,42 @@
-const container = document.getElementById('kopytko');
+const wrapper = document.getElementById('main-wrapper');
 
-const table = {
-  '1': 'Danuta Nawrocka',
-  '2': 'Kazimierz Nawrocki',
-  '3': 'Witold Predel',
-  '4': 'Renata Nawrocka',
-  '5': 'Józef Nawrocki',
-  '6': 'Marzena Nawrocka',
-  '7': 'Ireneusz Nawrocki',
-  '8': 'Monika Spitzenberger',
-  '9': 'Andreas Spitzenberger',
-  '10': 'Grażyna Pindera'
+tablesSourceData.forEach(tableData => {
+  const newTable = createTable(tableData.label, tableData.data);
+  wrapper.appendChild(newTable);
+})
+
+
+
+
+
+function createTable(label, people){
+  const newTable = createTableWrapper(label);
+  const tableArray = Object.keys(people).map(id => `${id}. ${people[id]}`);
+
+  let index = 0;
+  tableArray.forEach(person =>{
+
+    const [containerStyle, textStyle] = getEntryStyleString(tableArray.length, index);
+    const newEntry = createEntry(person, textStyle);
+    newEntry.style.transform = containerStyle;
+    newEntry.classList.add('circle');
+    newTable.appendChild(newEntry);
+    index++;
+  
+  });
+
+  return newTable;
+
 }
 
-const tableArray = Object.keys(table).map(id => `${id}. ${table[id]}`);
-
-
-const wrapper = document.getElementById('main-wrapper');
-let index = 0;
-tableArray.forEach(person =>{
-
-const [containerStyle, textStyle] = getEntryStyleString(tableArray.length, index);
-const newEntry = createEntry(person, textStyle);
-console.log(person, containerStyle);
-newEntry.style.transform = containerStyle;
-newEntry.classList.add('circle');
-wrapper.appendChild(newEntry);
-index++;
-  
-});
+function createTableWrapper(label){
+  const newTable = createDivWithClass('tableWrapper');
+  const tableLabel = createDivWithClass('label');
+  const tableGraphic = createDivWithClass('table');
+  tableLabel.innerText = label;
+  newTable.append(tableGraphic, tableLabel);
+  return newTable;
+}
 
 function createEntry(insideText, textStyle){
   const entry = createDivWithStyle();
@@ -41,6 +49,12 @@ function createEntry(insideText, textStyle){
 function createDivWithStyle(styleString){
   const element = document.createElement('div');
   if (styleString) element.style = styleString;
+  return element;
+}
+
+function createDivWithClass(className){
+  const element = document.createElement('div');
+  if (className) element.classList.add(className);
   return element;
 }
 
