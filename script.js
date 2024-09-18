@@ -5,7 +5,7 @@ tablesSourceData.forEach(tableData => {
   wrapper.appendChild(newTable);
 })
 
-
+//tablesSourceData type = {label:string, data: {'1':'value1', '2':'value2', ..., 'n':'valuen'} }[]
 
 
 
