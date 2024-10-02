@@ -1,11 +1,30 @@
+//tablesSourceData type = {label:string, data: {'1':'value_1', '2':'value_2', ..., 'n':'value_n'} }[]
 const wrapper = document.getElementById('main-wrapper');
+const listContainer = document.querySelector('.alphabetical-list');
 
 tablesSourceData.forEach(tableData => {
   const newTable = createTable(tableData.label, tableData.data);
   wrapper.appendChild(newTable);
 })
 
-//tablesSourceData type = {label:string, data: {'1':'value1', '2':'value2', ..., 'n':'valuen'} }[]
+const peopleWithoutTableName = tablesSourceData.map(source => source.data);
+const alphabeticalList = [];
+const all = [];
+peopleWithoutTableName.forEach(oneTable => {
+    const keys = Object.keys(oneTable);
+    const results = keys.map(key => {all.push(oneTable[key]); return reverseFullName(oneTable[key])});
+    alphabeticalList.push(results.sort());
+})
+
+
+alphabeticalList.forEach(sortedTable => {
+  const newWrapper = document.createElement('ul');
+  const items = sortedTable.map(person => getListItemWithText(fullNameArrayIntoNiceString(person)));
+  newWrapper.append(...items);
+  listContainer.appendChild(newWrapper);
+})
+
+
 
 
 
@@ -27,6 +46,12 @@ function createTable(label, people){
 
   return newTable;
 
+}
+
+function getListItemWithText(text){
+  const li = document.createElement('li');
+  li.innerText = text;
+  return li;
 }
 
 function createTableWrapper(label){
@@ -63,4 +88,14 @@ function getEntryStyleString(numberOfPeople, currentPersonNumber, translate = '2
   const currentAngle = angle * currentPersonNumber;
   const wrapperStyle = `rotate(${currentAngle}deg) translateX(${translate})`;
   return [wrapperStyle, `transform: rotate(-${currentAngle}deg)`]
+}
+
+function fullNameArrayIntoNiceString(fullNameArray){
+  return `${fullNameArray[0]} ${fullNameArray[1]}`;
+}
+
+
+function reverseFullName(nameAndSurname){
+    const separated = nameAndSurname.split(" ");
+    return [separated[1], separated[0]];
 }

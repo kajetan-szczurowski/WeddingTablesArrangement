@@ -44,3 +44,14 @@
 }
 
 
+ul{
+  list-style-type: none; /* Remove bullets */
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.alphabetical-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
