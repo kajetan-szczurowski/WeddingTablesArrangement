@@ -1,5 +1,5 @@
 //tablesSourceData type = {label:string, data: {'1':'value_1', '2':'value_2', ..., 'n':'value_n'} }[]
-const ADD_INDEX_TO_PERSON_NAME = true;
+let ADD_INDEX_TO_PERSON_NAME = true;
 const wrapper = document.getElementById('main-wrapper');
 const listContainer = document.querySelector('.alphabetical-list');
 
