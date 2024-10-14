@@ -5,6 +5,7 @@ const listContainer = document.querySelector('.alphabetical-list');
 
 insertTables();
 insertAlphabeticalLists();
+handlePrintMode();
 
 
 function insertTables(){
@@ -41,3 +42,23 @@ function countPeopleByNames(allGueastList){
     const countedAndSortedPeople = Object.keys(countedPeople).map(key => {return {value: countedPeople[key], label: key}}).sort((a, b) => b.value - a.value);
     console.log(countedAndSortedPeople)
 }
+
+function refreshTablesWindow(){
+    wrapper.innerHTML = "";
+}
+
+function handlePrintMode(){
+    const printModeSwitch = document.getElementById('print-mode-checkbox');
+    printModeSwitch.addEventListener('change', preparePrintMode);
+
+  
+}
+
+function preparePrintMode(){
+    const containerToClear = document.getElementById('after-main-tables');
+    ADD_INDEX_TO_PERSON_NAME = false;
+    refreshTablesWindow();
+    containerToClear.innerHTML = "";
+    insertTables();
+}
+

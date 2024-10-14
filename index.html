@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="style.css">
+    <title>Tables List</title>
 </head>
 
 
@@ -10,12 +11,17 @@
     <div class="main" id = 'main-wrapper'>
     </div>
 
-    <hr/>
-    <h2>Alphabetical list:</h2>
 
-    <div class = 'alphabetical-list'></div>
+    <div id = 'after-main-tables'>
+        <hr/>
+        <h2>Alphabetical list:</h2>
 
-  
+        <div class = 'alphabetical-list'></div>
+
+        <input type = 'checkbox' id = 'print-mode-checkbox' name = 'print-check'></input>
+        <label for = 'print-check'>Print Mode</label>
+    </div>
+
 </main>
 <script src="tablesData.js" defer></script>
 <script src="script.js" defer></script>
